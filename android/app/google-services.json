@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "project_number": "274807226246",
+    "project_id": "easyqueue-prod",
+    "storage_bucket": "easyqueue-prod.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274807226246:android:9974ccb628dcd23cbc3607",
+        "android_client_info": {
+          "package_name": "in.mahato.easyQueue.business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274807226246-80e272giksgkbolrlifjj2f7lh71plvi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mahato.easyQueue.business",
+            "certificate_hash": "2462bcab157f77b598c3c9f8234ce641445d95bb"
+          }
+        },
+        {
+          "client_id": "274807226246-hssq3ngm2eajgook5u4lmlstr8eba0q8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mahato.easyQueue.business",
+            "certificate_hash": "6f3ef96b1a990d866b4cfc0f74b5ac04bb45366c"
+          }
+        },
+        {
+          "client_id": "274807226246-pb369uv22g8r9siv509ed0dvfdqcar7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbwQTOa765nI25T9GR2xf86hi14PmtDXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274807226246-pb369uv22g8r9siv509ed0dvfdqcar7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274807226246:android:9404eb0ea1e897d6bc3607",
+        "android_client_info": {
+          "package_name": "in.mahato.easyqueue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274807226246-35o5j6hun0pclhp1gen2dir11n5brvjt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mahato.easyqueue",
+            "certificate_hash": "6f3ef96b1a990d866b4cfc0f74b5ac04bb45366c"
+          }
+        },
+        {
+          "client_id": "274807226246-ev2kf4sthp25reu59ddsdtk1jka1ouql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.mahato.easyqueue",
+            "certificate_hash": "974215f9bad4efa5855d5d0ef325dff0f837df5c"
+          }
+        },
+        {
+          "client_id": "274807226246-pb369uv22g8r9siv509ed0dvfdqcar7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbwQTOa765nI25T9GR2xf86hi14PmtDXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274807226246-pb369uv22g8r9siv509ed0dvfdqcar7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

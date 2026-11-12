@@ -1,0 +1,87 @@
+rules_version = '2';
+
+// Cloud Storage Security Rules for Easy Queue Customer Application
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        ('admin' in request.auth.token && request.auth.token.admin == true) ||
+        ('role' in request.auth.token && request.auth.token.role == 'admin')
+      );
+    }
+
+    function isBusinessStaff(businessId) {
+      return isAuthenticated() && (
+        isAdmin() ||
+        (('businessId' in request.auth.token && request.auth.token.businessId == businessId) &&
+         ('role' in request.auth.token && request.auth.token.role in ['admin', 'manager', 'staff']))
+      );
+    }
+
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function isUnderSizeLimit(maxMegabytes) {
+      return request.resource.size <= maxMegabytes * 1024 * 1024;
+    }
+
+    // Default deny for unhandled paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+
+    // User profile avatars
+    // Path: users/{userId}/avatar/{fileName}
+    match /users/{userId}/avatar/{fileName} {
+      // Anyone can read profile pictures (e.g. queue counter displays or staff review)
+      allow read: if isAuthenticated();
+
+      // Only the profile owner can upload or update their avatar (max 5MB, images only)
+      allow write: if isOwner(userId) &&
+                      isImage() &&
+                      isUnderSizeLimit(5);
+
+      // Only the profile owner or admin can delete the avatar
+      allow delete: if isOwner(userId) || isAdmin();
+    }
+
+    // Business media (logos, cover photos)
+    // Path: businesses/{businessId}/media/{fileName}
+    match /businesses/{businessId}/media/{fileName} {
+      // Public read access for business directory and search
+      allow read: if true;
+
+      // Only verified business staff or admin can upload media (max 10MB, images only)
+      allow write: if isBusinessStaff(businessId) &&
+                      isImage() &&
+                      isUnderSizeLimit(10);
+
+      allow delete: if isBusinessStaff(businessId);
+    }
+
+    // Customer review attachments
+    // Path: reviews/{reviewId}/{fileName}
+    match /reviews/{reviewId}/{fileName} {
+      // Public read for customer reviews
+      allow read: if true;
+
+      // Authenticated customers can upload review attachments (max 5MB, images only)
+      allow write: if isAuthenticated() &&
+                      isImage() &&
+                      isUnderSizeLimit(5);
+
+      allow delete: if isAuthenticated() || isAdmin();
+    }
+  }
+}
